@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b24c1fb-e8dd-4a5f-9dea-2d5c2bbb979b" name="Changes" comment="Filters done">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sauce/String.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/readProperties/ConfigProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/readProperties/ConfigProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sauce/InventoryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sauce/InventoryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sauce/InventoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sauce/InventoryTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="5b24c1fb-e8dd-4a5f-9dea-2d5c2bbb979b" name="Changes" comment="new" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -205,7 +198,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712942243611</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="new">
+      <option name="closed" value="true" />
+      <created>1712960999966</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712960999969</updated>
+    </task>
+    <task id="LOCAL-00005" summary="new">
+      <option name="closed" value="true" />
+      <created>1712961020231</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712961020231</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,7 +232,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="First day" />
     <MESSAGE value="Filters done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Filters done" />
+    <MESSAGE value="new" />
+    <option name="LAST_COMMIT_MESSAGE" value="new" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
