@@ -2,8 +2,7 @@ package readProperties;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-
-import java.io.ObjectInputFilter;
+import sauce.String;
 
 public interface ConfigProvider {
     Config config = readConfig();
