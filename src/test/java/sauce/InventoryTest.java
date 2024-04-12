@@ -68,5 +68,49 @@ public class InventoryTest extends BaseTest {
          Assert.assertTrue(loginPage.logoutRedirected());
     }
 
+    @Test
+    public void testSortingZtoA() {
+        InventoryPage inventoryPage = new InventoryPage();
+        inventoryPage.chooseDropdown(1);
+        List<String> sortedProductNames = inventoryPage.alphabetSorting();
+        for (int i = 1; i < sortedProductNames.size(); i++) {
+            Assert.assertTrue(sortedProductNames.get(i - 1).compareTo(sortedProductNames.get(i)) >= 0,
+                    "Product names are not sorted in reverse alphabetical order");
+        }
+    }
+
+    @Test
+    public void testPricesSortingLowToHigh() {
+        InventoryPage inventoryPage = new InventoryPage();
+        inventoryPage.chooseDropdown(2);
+        List<Double> sortedPrices = inventoryPage.getPricesDouble();
+
+        for (int i = 1; i < sortedPrices.size(); i++) {
+            Assert.assertTrue(sortedPrices.get(i - 1) <= sortedPrices.get(i), "Prices are not sorted correctly");
+        }
+    }
+
+    @Test
+    public void testPricesSortedHighToLow() {
+        InventoryPage inventoryPage = new InventoryPage();
+        inventoryPage.chooseDropdown(3);
+        List<Double> sortedPrices = inventoryPage.getPricesDouble();
+
+        for (int i = 1; i < sortedPrices.size(); i++) {
+            Assert.assertTrue(sortedPrices.get(i - 1) >= sortedPrices.get(i));
+        }
+    }
+
+    @Test
+    public void testSortingAtoZ() {
+        InventoryPage inventoryPage = new InventoryPage();
+        inventoryPage.chooseDropdown(0);
+        List<String> sortedProductNames = inventoryPage.alphabetSorting();
+
+        for (int i = 1; i < sortedProductNames.size(); i++) {
+            Assert.assertTrue(sortedProductNames.get(i - 1).compareTo(sortedProductNames.get(i)) <= 0);
+        }
+    }
+
 
 }
