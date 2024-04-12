@@ -4,9 +4,11 @@ import core.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InventoryPage extends BasePage {
     @FindBy(xpath = "//span[@class='title']")
@@ -30,7 +32,7 @@ public class InventoryPage extends BasePage {
     @FindBy(id = "logout_sidebar_link")
     private WebElement logoutLink;
 
-    @FindBy(css = "product_sort_container")
+    @FindBy(xpath = "//*[@id=\"header_container\"]/div[2]/div/span/select")
     private WebElement filterDropdown;
 
     @FindBy(css = ".inventory_list")
@@ -87,8 +89,31 @@ public class InventoryPage extends BasePage {
         aboutLink.click();
     }
 
-    public LoginPage clickLogout() {
+    public void clickLogout() {
         logoutLink.click();
-        return new LoginPage();
+        new LoginPage();
+    }
+
+    public void chooseDropdown(int index) {
+        filterDropdown.click();
+        Select s = new Select(filterDropdown);
+        s.selectByIndex(index);
+    }
+
+    public List<String> alphabetSorting() {
+        return productNames.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
+
+    public List<Double> getPricesDouble() {
+        List<Double> prices = new ArrayList<>();
+        for(WebElement priceElement : productPrices) {
+            String priceText = priceElement.getText();
+            String cleanedPriceText = priceText.replace("$", "").trim();
+            double price = Double.parseDouble(cleanedPriceText);
+            prices.add(price);
+        }
+        return prices;
     }
 }
