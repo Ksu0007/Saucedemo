@@ -10,6 +10,12 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
 
+    container:
+      image: selenium/standalone-chrome:latest
+
+    env:
+      CHROME_DRIVER_PATH: /usr/bin/google-chrome
+
     steps:
       - name: Checkout Git repository
         uses: actions/checkout@v2
@@ -20,15 +26,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 123.0.6312.105
-
       - name: Build with Maven
         run: mvn clean install -B
 
       - name: Test with Maven
-        env:
-          GOOGLE_CHROME_SHIM: $(which google-chrome)
         run: mvn test
