@@ -1,6 +1,7 @@
 package sauce;
 
 import core.BaseTest;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,6 +9,8 @@ import readProperties.ConfigProvider;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+
 
 public class InventoryTest extends BaseTest {
 
@@ -27,7 +30,8 @@ public class InventoryTest extends BaseTest {
     @Test
     public void testBurgerMenuIsClosed() {
         InventoryPage inventoryPage = new InventoryPage();
-        inventoryPage.closeBurgerMenu();
+        inventoryPage.openBurgerMenu();
+        inventoryPage.clickCloseButtonWithWait();
         Assert.assertTrue(inventoryPage.burgerMenuIsClosed());
     }
 
@@ -36,16 +40,15 @@ public class InventoryTest extends BaseTest {
         List<String> expectedLinks = List.of("All Items", "About", "Logout", "Reset App State");
         InventoryPage inventoryPage = new InventoryPage();
         inventoryPage.openBurgerMenu();
-        List<java.lang.String> actualLinks = inventoryPage.getBurgerMenuLinks();
+        List<String> menuLinks = inventoryPage.getBurgerMenuLinks(); // Исправлено на List<String>
 
-                .map(element -> element.getText())  // Получение текста из WebElement
-                .collect(Collectors.toList());
-
-        Assert.assertEquals(actualLinks.size(), expectedLinks.size());
-        for (String expectedLink : expectedLinks) {
-            Assert.assertTrue(actualLinks.contains(expectedLink));
+        Assert.assertEquals(menuLinks.size(), expectedLinks.size());
+        for (String link : menuLinks) {
+            Assert.assertTrue(expectedLinks.contains(link));
         }
     }
+
+
 
     @Test
     public void testAboutLink() {

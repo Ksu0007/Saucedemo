@@ -4,9 +4,14 @@ import core.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InventoryPage extends BasePage {
     @FindBy(xpath = "//span[@class='title']")
@@ -15,7 +20,7 @@ public class InventoryPage extends BasePage {
     @FindBy(id = "react-burger-menu-btn")
     private WebElement burgerMenuOpenButton;
 
-    @FindBy(id = "react-burger-cross-btn")
+    @FindBy(css = ".bm-cross-button")
     private WebElement burgerMenuCloseButton;
 
     @FindBy(css = ".bm-menu-wrap")
@@ -30,7 +35,7 @@ public class InventoryPage extends BasePage {
     @FindBy(id = "logout_sidebar_link")
     private WebElement logoutLink;
 
-    @FindBy(css = "product_sort_container")
+    @FindBy(xpath = "//*[@id='header_container']/div[2]/div/span/select")
     private WebElement filterDropdown;
 
     @FindBy(css = ".inventory_list")
@@ -66,18 +71,21 @@ public class InventoryPage extends BasePage {
         String ariaHiddenValue = burgerMenu.getAttribute("aria-hidden");
         return ariaHiddenValue.equals("false");
     }
+
     public boolean burgerMenuIsClosed() {
         String ariaHiddenValue = burgerMenu.getAttribute("aria-hidden");
         return ariaHiddenValue.equals("true");
     }
 
-    public void closeBurgerMenu() {
-        burgerMenuCloseButton.click();
+    public void closeBurgerMenu() {burgerMenuCloseButton.click();}
+    public void clickCloseButtonWithWait() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(burgerMenuCloseButton)).click();
     }
 
     public List<String> getBurgerMenuLinks() {
         List<String> menuLinksText = new ArrayList<>();
-        for(WebElement link : burgerMenuLinks) {
+        for (WebElement link : burgerMenuLinks) {
             menuLinksText.add(link.getText());
         }
         return menuLinksText;
@@ -90,5 +98,28 @@ public class InventoryPage extends BasePage {
     public LoginPage clickLogout() {
         logoutLink.click();
         return new LoginPage();
+    }
+
+    public void chooseDropdown(int index) {
+        filterDropdown.click();
+        Select s = new Select(filterDropdown);
+        s.selectByIndex(index);
+    }
+
+    public List<String> alphabetSorting() {
+        return productNames.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
+
+    public List<Double> getPricesDouble() {
+        List<Double> prices = new ArrayList<>();
+        for (WebElement priceElement : productPrices) {
+            String priceText = priceElement.getText();
+            String cleanedPriceText = priceText.replace("$", "").trim();
+            double price = Double.parseDouble(cleanedPriceText);
+            prices.add(price);
+        }
+        return prices;
     }
 }

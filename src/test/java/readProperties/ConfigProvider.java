@@ -2,7 +2,6 @@ package readProperties;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import sauce.String;
 
 public interface ConfigProvider {
     Config config = readConfig();
