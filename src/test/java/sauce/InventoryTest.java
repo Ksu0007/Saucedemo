@@ -1,14 +1,11 @@
 package sauce;
 
 import core.BaseTest;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import readProperties.ConfigProvider;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class InventoryTest extends BaseTest {
@@ -46,8 +43,6 @@ public class InventoryTest extends BaseTest {
             Assert.assertTrue(expectedLinks.contains(link));
         }
     }
-
-
 
     @Test
     public void testAboutLink() {
@@ -113,6 +108,4 @@ public class InventoryTest extends BaseTest {
             Assert.assertTrue(sortedProductNames.get(i - 1).compareTo(sortedProductNames.get(i)) <= 0);
         }
     }
-
-
 }
