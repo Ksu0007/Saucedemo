@@ -1,0 +1,1 @@
+{"uuid":"0990ee7d-fce2-47a0-8e86-f91ed2cb10e8","name":"sauce.InventoryTest.login","children":["9530ce84-e225-4e81-ab61-310d8de1ade0"],"description":"","befores":[{"name":"login","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1713020483617,"stop":1713020486645}],"afters":[],"start":1713020483617,"stop":1713020486645}

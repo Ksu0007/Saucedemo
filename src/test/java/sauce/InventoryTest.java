@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-
 public class InventoryTest extends BaseTest {
 
     @BeforeMethod
@@ -107,6 +106,7 @@ public class InventoryTest extends BaseTest {
     @Test
     public void testSortingAtoZ() {
         InventoryPage inventoryPage = new InventoryPage();
+        inventoryPage.chooseDropdown(3);
         inventoryPage.chooseDropdown(0);
         List<String> sortedProductNames = inventoryPage.alphabetSorting();
 
