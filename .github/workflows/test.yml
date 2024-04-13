@@ -21,9 +21,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Set up Chrome
-        uses: actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v1
         with:
-          chrome_version: 123.0.6312.105
+          chrome-version: 123.0.6312.105
 
       - name: Build with Maven
         run: mvn clean install -B
