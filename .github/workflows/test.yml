@@ -1,14 +1,9 @@
 name: Run Tests
 
 on:
-  pull_request:
-    branches:
-      - master
-      - issue-*
   push:
     branches:
-      - master
-      - issue-*
+      - main
 
 jobs:
   build_and_test:
