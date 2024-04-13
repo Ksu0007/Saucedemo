@@ -20,13 +20,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Chromium
-        uses: puppeteer/setup-chromium@v1
+      - name: Set up Chrome
+        uses: actions/setup-chrome
 
       - name: Build with Maven
         run: mvn clean install -B
 
       - name: Test with Maven
         env:
-          CHROMIUM_EXECUTABLE_PATH: $(which chromium)
+          GOOGLE_CHROME_SHIM: $(which google-chrome)
         run: mvn test
