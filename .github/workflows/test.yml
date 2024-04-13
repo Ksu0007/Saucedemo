@@ -19,13 +19,18 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Set up ChromeDriver
-        uses: robertbeal/setup-chromedriver@v1
-
-      - name: Set up Chrome
+      - name: Install Chrome
         run: |
           sudo apt-get update
           sudo apt-get install google-chrome-stable
+
+      - name: Install ChromeDriver
+        run: |
+          LATEST=$(curl -sL https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+          wget https://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Cache Maven dependencies
         uses: actions/cache@v4
