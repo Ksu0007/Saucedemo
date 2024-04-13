@@ -2,32 +2,61 @@ name: Run Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
-  build_and_test:
-    name: Build and Test
+  Run-on-Chrome:
     runs-on: ubuntu-latest
-
-    container:
-      image: selenium/standalone-chrome:latest
-
-    env:
-      CHROME_DRIVER_PATH: /usr/bin/google-chrome
-
     steps:
-      - name: Checkout Git repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'corretto'
+        cache: maven
 
+    - name: Maven test
+      run: mvn test
+      env:
+        ENV_BROWSER_NAME: "CHROME"
+
+    - name: Attach screenshots and reports Chrome
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: screenshots-and-report-Chrome
+        path: |
+          screenshots
+          target/surefire-reports/emailable-report.html
+
+  Good-Job:
+    runs-on: ubuntu-latest
+    needs: [Run-on-Chrome,Run-on-FireFox]
+    steps:
+      - run: echo "WOW !!!!!!  "
+
+  Bad-Luck:
+    runs-on: ubuntu-latest
+    needs: [Run-on-FireFox]
+    if: failure()
+    steps:
+        - run: echo "FAIL !!!! "
+
+  Run-on-FireFox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'corretto'
+          cache: maven
 
-      - name: Build with Maven
-        run: mvn clean install -B
-
-      - name: Test with Maven
+      - name: Maven test
         run: mvn test
+        env:
+          ENV_BROWSER_NAME: "FIREFOX"
