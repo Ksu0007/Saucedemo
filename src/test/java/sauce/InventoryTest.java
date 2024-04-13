@@ -102,7 +102,6 @@ public class InventoryTest extends BaseTest {
             Assert.assertTrue(sortedPrices.get(i - 1) >= sortedPrices.get(i));
         }
     }
-
     @Test
     public void testSortingAtoZ() {
         InventoryPage inventoryPage = new InventoryPage();
