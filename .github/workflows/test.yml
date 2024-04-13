@@ -23,6 +23,9 @@ jobs:
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
 
+      - name: Check Chrome version
+        run: google-chrome --version
+
       - name: Build with Maven
         run: mvn clean install -B
 
