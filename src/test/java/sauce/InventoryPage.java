@@ -50,6 +50,9 @@ public class InventoryPage extends BasePage {
     @FindBy(xpath = "//button[@class='btn btn_primary btn_small btn_inventory ']")
     private List<WebElement> addToCartButtons;
 
+    @FindBy(css = "#item_4_title_link")
+    private WebElement backpackLink;
+
 
     public InventoryPage() {
         PageFactory.initElements(driver, this);
@@ -121,5 +124,10 @@ public class InventoryPage extends BasePage {
             prices.add(price);
         }
         return prices;
+    }
+
+    public BackpackPage openBackpackPage(){
+        backpackLink.click();
+        return new BackpackPage();
     }
 }
