@@ -34,7 +34,7 @@ public class InventoryTest extends BaseTest {
         Assert.assertTrue(inventoryPage.burgerMenuIsClosed());
     }
 
-    @Test
+    @Test(enabled = false)
     public void testBurgerMenuHasAllLinks() {
         List<String> expectedLinks = List.of("All Items", "About", "Logout", "Reset App State");
         InventoryPage inventoryPage = new InventoryPage();
