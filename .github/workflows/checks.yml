@@ -20,3 +20,7 @@ jobs:
 
     - name: Maven test
       run: mvn test
+      env:
+        ENV_BROWSER_NAME: "CHROME"
+
+
