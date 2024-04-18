@@ -28,8 +28,9 @@ jobs:
    - name: Setup Chrome
      uses: browser-actions/setup-chrome@latest
    - run: chrome --version  
-   - name: run tests
-     run: mvn test
+   
+   - name: run tests with full stack trace
+     run: mvn -e test
 
 
 
