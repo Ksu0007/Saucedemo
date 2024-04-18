@@ -88,7 +88,7 @@ public class InventoryPage extends BasePage {
     }
 
     public List<String> getBurgerMenuLinks() {
-        getWait10().until(ExpectedConditions.visibilityOfElementLocated(By.id("burger-menu")));
+        getWait10().until(ExpectedConditions.visibilityOf(burgerMenu));
 
         List<String> menuLinksText = new ArrayList<>();
         for (WebElement link : burgerMenuLinks) {
