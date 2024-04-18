@@ -1,6 +1,7 @@
 package sauce;
 
 import core.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -87,6 +88,8 @@ public class InventoryPage extends BasePage {
     }
 
     public List<String> getBurgerMenuLinks() {
+        getWait10().until(ExpectedConditions.visibilityOfElementLocated(By.id("burger-menu")));
+
         List<String> menuLinksText = new ArrayList<>();
         for (WebElement link : burgerMenuLinks) {
             menuLinksText.add(link.getText());
