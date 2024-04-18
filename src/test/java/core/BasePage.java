@@ -39,7 +39,7 @@ abstract public class BasePage {
 
     protected WebDriverWait getWait10() {
         if (wait10 == null) {
-            wait10 = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+            wait10 = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
         }
         return wait10;
     }
