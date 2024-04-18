@@ -1,9 +1,11 @@
-package sauce;
+package tests;
 
 import core.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import readProperties.ConfigProvider;
+import sauce.InventoryPage;
+import sauce.LoginPage;
 
 public class SaucedemoLoginTest extends BaseTest {
     @Test

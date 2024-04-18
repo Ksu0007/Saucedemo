@@ -1,10 +1,13 @@
-package sauce;
+package tests;
 
 import core.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import readProperties.ConfigProvider;
+import sauce.BackpackPage;
+import sauce.InventoryPage;
+import sauce.LoginPage;
 
 public class BackpackTest extends BaseTest {
     @BeforeMethod
