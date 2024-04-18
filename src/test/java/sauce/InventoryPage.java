@@ -51,7 +51,7 @@ public class InventoryPage extends BasePage {
     @FindBy(xpath = "//button[@class='btn btn_primary btn_small btn_inventory ']")
     private List<WebElement> addToCartButtons;
 
-    @FindBy(css = "#item_4_title_link")
+    @FindBy(xpath = "//img[@alt='Sauce Labs Backpack']")
     private WebElement backpackLink;
 
 
