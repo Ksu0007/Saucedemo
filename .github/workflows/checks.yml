@@ -19,24 +19,18 @@ jobs:
       distribution: 'corretto'
       cache: maven
 
-   - name: Install Chrome
-     run: |
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb
-          sudo apt-get install -f
+   - name: Setup Maven Action
+     uses: s4u/setup-maven-action@6d44c18d67d9e1549907b8815efa5e4dada1801b
+     with: 
+       java-version: 17
+       
 
-   - name: Install ChromeDriver
-     run: |
-          LATEST=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          wget http://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/chromedriver
-          sudo chmod +x /usr/local/bin/chromedriver
+   - name: Setup Chrome
+     uses: browser-actions/setup-chrome@latest
+   - run: chrome --version  
 
 
 
 
-   - name: run tests
-     run: mvn test
-   
+  
   
