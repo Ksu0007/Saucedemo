@@ -1,42 +1,47 @@
-name: run tests
+name: Run Tests
 
 on:
- push:
-  branches: "main"
+  push:
+    branches: "main"
 
 jobs:
- run-tests:
-  runs-on: ubuntu-latest
+  run-tests:
+    runs-on: ubuntu-latest
 
-  steps:
-   - name: Checkout
-     uses: actions/checkout@v4.1.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
 
-   - name: Setup Java JDK
-     uses: actions/setup-java@v4.2.1
-     with: 
-      java-version: '17'
-      distribution: 'corretto'
-      cache: maven
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: maven
 
-   - name: Setup Maven Action
-     uses: s4u/setup-maven-action@6d44c18d67d9e1549907b8815efa5e4dada1801b
-     with: 
-       java-version: 17
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@6d44c18d67d9e1549907b8815efa5e4dada1801b
+        with:
+          java-version: 17
 
-   - name: Build with Maven
-     run: mvn -B package --file pom.xml
-       
-
-   - name: Setup Chrome
-     uses: browser-actions/setup-chrome@latest
-   - run: chrome --version  
-   
-   - name: run tests with full stack trace
-     run: mvn -e test
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
 
 
+      - name: Download ChromeDriver (modify version as needed)
+        run: wget https://chromedriver.chromium.org/89.0.4389.23/chromedriver_linux64.zip -O chromedriver.zip
+        # Unzip the downloaded file and set appropriate permissions
 
+      - name: Extract ChromeDriver
+        run: unzip chromedriver.zip
 
-  
-  
+      - name: Set permissions for ChromeDriver (if needed)
+        # Replace with commands to set appropriate permissions for your environment
+        # This step might be necessary depending on your runner environment
+        run: chmod +x chromedriver
+
+      - name: Verify Chrome Version
+        run: chrome --version
+
+      - name: Run tests with full stack trace
+        run: mvn -e test

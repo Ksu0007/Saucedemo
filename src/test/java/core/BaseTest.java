@@ -13,7 +13,9 @@ abstract public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
+        System.out.println("Setting up WebDriverManager...");
         WebDriverManager.chromedriver().setup();
+        System.out.println("Creating ChromeDriver instance...");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
