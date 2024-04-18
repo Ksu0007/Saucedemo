@@ -36,7 +36,7 @@ public class InventoryTest extends BaseTest {
         List<String> expectedLinks = List.of("All Items", "About", "Logout", "Reset App State");
         InventoryPage inventoryPage = new InventoryPage();
         inventoryPage.openBurgerMenu();
-        List<String> menuLinks = inventoryPage.getBurgerMenuLinks(); // Исправлено на List<String>
+        List<String> menuLinks = inventoryPage.getBurgerMenuLinks();
 
         Assert.assertEquals(menuLinks.size(), expectedLinks.size());
         for (String link : menuLinks) {
