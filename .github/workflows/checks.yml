@@ -23,6 +23,9 @@ jobs:
      uses: s4u/setup-maven-action@6d44c18d67d9e1549907b8815efa5e4dada1801b
      with: 
        java-version: 17
+
+   - name: Build with Maven
+     run: mvn -B package --file pom.xml
        
 
    - name: Setup Chrome
