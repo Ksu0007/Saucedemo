@@ -1,0 +1,9 @@
+<suite name="Saucedemo">
+    <test name="MyTests">
+        <classes>
+            <class name="tests.BackpackTest" />
+            <class name="tests.InventoryTest" />
+            <class name="tests.SaucedemoLoginTest" />
+        </classes>
+    </test>
+</suite>
