@@ -23,6 +23,33 @@ public class BackpackTest extends BaseTest {
         BackpackPage backpackPage = new BackpackPage();
         backpackPage.returnBack();
         Assert.assertEquals(inventoryPage.getTitleInventoryPage(), "Products");
+    }
+
+    @Test
+    public void testItemName() {
+        BackpackPage backpackPage = new InventoryPage().openBackpackPage();
+        Assert.assertEquals(backpackPage.getBackpackName(), "Sauce Labs Backpack");
+    }
+
+    @Test
+    public void testItemPrice() {
+        BackpackPage backpackPage = new InventoryPage().openBackpackPage();
+        Assert.assertEquals(backpackPage.getBackpackPrice(), 29.99);
+    }
+
+    @Test
+    public void testAddToCart() {
+        BackpackPage backpackPage = new InventoryPage().openBackpackPage();
+        backpackPage.addToCart();
+        Assert.assertEquals(backpackPage.getNumberOfGoodsInCart(), "1");
+    }
+
+    @Test
+    public void testRemoveFromCert(){
+        BackpackPage backpackPage = new InventoryPage().openBackpackPage();
+        backpackPage.addToCart();
+        backpackPage.removeFromCart();
+        Assert.assertFalse(backpackPage.isGoodsInCartDisplayed());
 
     }
 }

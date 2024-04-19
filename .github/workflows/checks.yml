@@ -46,7 +46,21 @@ jobs:
         run: mvn test
         env:
           ENV_BROWSER_NAME: "FIREFOX"
+  Run-on-Safari:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: maven
 
+      - name: Maven test on Safari
+        run: mvn test
+        env:
+          ENV_BROWSER_NAME: "SAFARI"
           
       - name: Allure Report with history
         uses: simple-elf/allure-report-action@v1.9
