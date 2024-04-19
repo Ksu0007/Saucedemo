@@ -1,0 +1,1 @@
+{"uuid":"9aca05e4-eb68-4a45-b6a8-6e496bf659ca","name":"tests.InventoryTest.login","children":["b37901d2-b298-4bc8-8946-01e072c0a94e"],"description":"","befores":[{"name":"login","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1713534274809,"stop":1713534277839}],"afters":[],"start":1713534274809,"stop":1713534277839}

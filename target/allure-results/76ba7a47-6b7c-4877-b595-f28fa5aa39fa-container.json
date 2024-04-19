@@ -1,0 +1,1 @@
+{"uuid":"76ba7a47-6b7c-4877-b595-f28fa5aa39fa","name":"tests.BackpackTest.login","children":["47dcc826-5f08-4c3f-ba31-2be0174b7a32"],"description":"","befores":[{"name":"login","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1713536053115,"stop":1713536055259}],"afters":[],"start":1713536053115,"stop":1713536055259}
