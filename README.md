@@ -1,1 +1,1 @@
-Learning automation
+Java + Selenium
