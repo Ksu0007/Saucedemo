@@ -30,6 +30,21 @@ jobs:
         path: |
           screenshots
           target/surefire-reports/emailable-report.html
+    - name: Allure Report with history for Chrome
+      uses: simple-elf/allure-report-action@v1.9
+      if: always()
+      with:
+        allure_results: target/allure-results
+        allure_report: allure-report-chrome
+        gh_pages: gh-pages
+        allure_history: allure-history-chrome
+    - name: Deploy report to GitHub Pages for Chrome
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history-chrome
 
   Run-on-FireFox:
     runs-on: ubuntu-latest
@@ -46,10 +61,29 @@ jobs:
         run: mvn test
         env:
           ENV_BROWSER_NAME: "FIREFOX"
+      - name: Allure Report with history for Firefox
+        uses: simple-elf/allure-report-action@v1.9
+        if: always()
+        with:
+          allure_results: target/allure-results
+          allure_report: allure-report-firefox
+          gh_pages: gh-pages
+          allure_history: allure-history-firefox
+      - name: Deploy report to GitHub Pages for Firefox
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history-firefox
+
   Run-on-Safari:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install Safari WebDriver
+        run: |
+          brew install --cask safari-driver
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -62,22 +96,22 @@ jobs:
         env:
           ENV_BROWSER_NAME: "SAFARI"
           
-      - name: Allure Report with history
+      - name: Allure Report with history for Safari
         uses: simple-elf/allure-report-action@v1.9
         if: always()
         with:
-            allure_results: target/allure-results
-            allure_report: allure-report 
-            gh_pages: gh-pages
-            allure_history:  allure-history
-            
-      - name: Deploy report to Github Pages
+          allure_results: target/allure-results
+          allure_report: allure-report-safari
+          gh_pages: gh-pages
+          allure_history: allure-history-safari
+      - name: Deploy report to GitHub Pages for Safari
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
-            PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            PUBLISH_BRANCH: gh-pages
-            PUBLISH_DIR: allure-history
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history-safari
+
     
     
     
