@@ -30,6 +30,21 @@ jobs:
         path: |
           screenshots
           target/surefire-reports/emailable-report.html
+    - name: Allure Report with history for Chrome
+      uses: simple-elf/allure-report-action@v1.9
+      if: always()
+      with:
+        allure_results: target/allure-results
+        allure_report: allure-report-chrome
+        gh_pages: gh-pages
+        allure_history: allure-history-chrome
+    - name: Deploy report to GitHub Pages for Chrome
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history-chrome
 
   Run-on-FireFox:
     runs-on: ubuntu-latest
@@ -46,25 +61,23 @@ jobs:
         run: mvn test
         env:
           ENV_BROWSER_NAME: "FIREFOX"
-
-          
-      - name: Allure Report with history
+      - name: Allure Report with history for Firefox
         uses: simple-elf/allure-report-action@v1.9
         if: always()
         with:
-            allure_results: target/allure-results
-            allure_report: allure-report 
-            gh_pages: gh-pages
-            allure_history:  allure-history
-            
-      - name: Deploy report to Github Pages
+          allure_results: target/allure-results
+          allure_report: allure-report-firefox
+          gh_pages: gh-pages
+          allure_history: allure-history-firefox
+      - name: Deploy report to GitHub Pages for Firefox
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
-            PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            PUBLISH_BRANCH: gh-pages
-            PUBLISH_DIR: allure-history
-    
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history-firefox
+
+
     
     
    
