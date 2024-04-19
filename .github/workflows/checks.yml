@@ -83,7 +83,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Safari WebDriver
         run: |
-          brew install --cask safari-driver
+          mkdir -p $HOME/bin
+          curl -s -o $HOME/bin/safaridriver.zip https://developer.apple.com/services/a-b/prereleaseDownload?path=WebDriver/WebDriver-20300.2.7.zip
+          unzip -q $HOME/bin/safaridriver.zip -d $HOME/bin
+          chmod +x $HOME/bin/safaridriver
+          echo "Safari WebDriver installed"
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
