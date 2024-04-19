@@ -47,7 +47,7 @@ jobs:
         env:
           ENV_BROWSER_NAME: "FIREFOX"
   Run-on-Safari:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
