@@ -48,6 +48,14 @@ public class InventoryPage extends BasePage {
     @FindBy(css = ".inventory_item_price")
     private List<WebElement> productPrices;
 
+    @FindBy(css = ".shopping_cart_link")
+    private WebElement cartButton;
+
+    @FindBy(css = "#add-to-cart-sauce-labs-bike-light")
+    private WebElement bikeAddToCartButton;
+    @FindBy(css = "#add-to-cart-sauce-labs-fleece-jacket")
+    private WebElement jacketAddToCartButton;
+
     @FindBy(xpath = "//button[@class='btn btn_primary btn_small btn_inventory ']")
     private List<WebElement> addToCartButtons;
 
@@ -129,8 +137,18 @@ public class InventoryPage extends BasePage {
         return prices;
     }
 
+    public void addBikeToCart() {
+        bikeAddToCartButton.click();
+    }
+    public void addJacketToCart(){jacketAddToCartButton.click();}
+
     public BackpackPage openBackpackPage(){
         backpackLink.click();
         return new BackpackPage();
+    }
+
+    public CartPage openCartPAge(){
+        cartButton.click();
+        return new CartPage();
     }
 }

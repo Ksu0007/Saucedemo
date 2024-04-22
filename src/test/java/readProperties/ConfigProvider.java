@@ -17,5 +17,9 @@ public interface ConfigProvider {
     String STANDARD_PASSWORD = readConfig().getString("userParams.standard.password");
     String PROBLEM_USER_LOGIN = readConfig().getString("userParams.problem.login");
     String PROBLEM_USER_PASSWORD = readConfig().getString("userParams.problem.password");
+    String USER_FIRST_NAME = readConfig().getString("userParams.standard.firstName");
+    String USER_LAST_NAME = readConfig().getString("userParams.standard.lastName");
+    String USER_ZIP = readConfig().getString("userParams.standard.zipCode");
+
 
 }

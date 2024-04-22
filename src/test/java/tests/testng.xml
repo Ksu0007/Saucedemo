@@ -4,6 +4,7 @@
             <class name="tests.BackpackTest" />
             <class name="tests.InventoryTest" />
             <class name="tests.SaucedemoLoginTest" />
+            <class name="tests.CheckoutTest" />
         </classes>
     </test>
 </suite>
